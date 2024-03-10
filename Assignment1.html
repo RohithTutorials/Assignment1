@@ -1,0 +1,51 @@
+CREATE TABLE Product_Category (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    desc TEXT,
+    created_at TIMESTAMP,
+    modified_at TIMESTAMP
+);
+ALTER TABLE Product
+ADD CONSTRAINT fk_product_category
+FOREIGN KEY (category_id)
+REFERENCES Product_Category(id);
+CREATE TABLE Product_Category (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    desc TEXT,
+    created_at TIMESTAMP,
+    modified_at TIMESTAMP
+);
+
+CREATE TABLE Product (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    category_id INT,
+    created_at TIMESTAMP,
+    modified_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES Product_Category(id)
+);
+
+CREATE TABLE Product_Inventory (
+    id INT PRIMARY KEY,
+    SKU VARCHAR(255),
+    quantity INT,
+    category_id INT,
+    created_at TIMESTAMP,
+    modified_at TIMESTAMP,
+    price DECIMAL,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES Product_Category(id)
+);
+
+CREATE TABLE Discount (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    desc TEXT,
+    discount_percent DECIMAL,
+    active BOOLEAN,
+    created_at TIMESTAMP,
+    modified_at TIMESTAMP,
+    deleted_at TIMESTAMP
+);
