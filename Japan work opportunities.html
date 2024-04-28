@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan jobs</title>
+<style>
+    .btn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    .btn:hover {
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+    <button class="btn">job search</button>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japan Opportunities</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f2f2f2;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .language-select {
+            text-align: right;
+            margin-right: 20px;
+        }
+        .language-select select {
+            padding: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Japan Opportunities</h1>
+    </header>
+    <nav>
+        <div class="language-select">
+            <label for="language-select">Language:</label>
+            <select id="language-select" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="jp">日本語</option>
+            </select>
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#jobs">Job Listings</a></li>
+            <li><a href="#about">About Japan</a></li>
+        </ul>
+    </nav>
+    <!-- Home section -->
+    <section id="home">
+        <h2 id="home-title-en">Home</h2>
+        <h2 id="home-title-jp" style="display: none;">ホーム</h2>
+        <p id="home-content-en">Explore various work opportunities in Japan, from traditional to modern.</p>
+        <p id="home-content-jp" style="display: none;">伝統的から現代的まで、日本での様々な仕事の機会を探索してください。</p>
+    </section>
+    <section id="jobs">
+        <h2 id="jobs-title-en">Job Listings</h2>
+        <h2 id="jobs-title-jp" style="display: none;">求人情報</h2>
+        <p id="jobs-content-en">Discover exciting job openings across different industries in Japan.</p>
+        <p id="jobs-content-jp" style="display: none;">日本のさまざまな産業でのエキサイティングな求人情報を発見してください。</p>
+    </section>
+    <section id="about">
+        <h2 id="about-title-en">About Japan</h2>
+        <h2 id="about-title-jp" style="display: none;">日本について</h2>
+        <p id="about-content-en">Learn about the rich culture, vibrant lifestyle, and unique traditions of Japan.</p>
+        <p id="about-content-jp" style="display: none;">日本の豊かな文化、活気のあるライフスタイル、そして独特の伝統について学びましょう。</p>
+    </section>
+    <script>
+        function changeLanguage() {
+            var select = document.getElementById("language-select");
+            var language = select.options[select.selectedIndex].value;
+            if (language === "jp") {
+                document.querySelectorAll('[id$="-en"]').forEach(function(el) {
+                    el.style.display = "none";
+                });
+                document.querySelectorAll('[id$="-jp"]').forEach(function(el) {
+                    el.style.display = "block";
+                });
+            } else {
+                document.querySelectorAll('[id$="-en"]').forEach(function(el) {
+                    el.style.display = "block";
+                });
+                document.querySelectorAll('[id$="-jp"]').forEach(function(el) {
+                    el.style.display = "none";
+                });
+            }
+        }
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f3f3;
+    }
+
+    header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #searchForm {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    #searchInput {
+      padding: 10px;
+      width: 300px;
+      font-size: 16px;
+    }
+
+    #searchButton {
+      padding: 10px 20px;
+      background-color: #fff;
+      color: #007bff;
+      border: 1px solid #007bff;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #jobListings {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .jobListing {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      transition: transform 0.3s ease;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .jobListing:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job Search</h1>
+    <form id="searchForm">
+      <input type="text" id="searchInput" placeholder="Search for jobs...">
+      <button type="button" id="searchButton">Search</button>
+    </form>
+  </header>
+
+  <div id="jobListings">
+    <!-- Job listings will be dynamically added here -->
+  </div>
+
+  <script>
+    const jobListings = [
+      { title: "Software Engineer", company: "Tech Co.", location: "Tokyo, Japan" },
+      { title: "Web Developer", company: "Web Solutions Ltd.", location: "Osaka, Japan" },
+      { title: "Data Analyst", company: "Data Insights Inc.", location: "Kyoto, Japan" },
+      // Add more job listings here
+    ];
+    function displayJobListings() {
+      const jobListingsContainer = document.getElementById("jobListings");
+      jobListingsContainer.innerHTML = "";
+      jobListings.forEach(job => {
+        const jobListing = document.createElement("div");
+        jobListing.classList.add("jobListing");
+        jobListing.innerHTML = `
+          <h2>${job.title}</h2>
+          <p><strong>Company:</strong> ${job.company}</p>
+          <p><strong>Location:</strong> ${job.location}</p>
+        `;
+        jobListingsContainer.appendChild(jobListing);
+      });
+    }
+    displayJobListings();
+    document.getElementById("searchButton").addEventListener("click", function() {
+      const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+      const filteredJobs = jobListings.filter(job => {
+        return job.title.toLowerCase().includes(searchTerm) || job.company.toLowerCase().includes(searchTerm) || job.location.toLowerCase().includes(searchTerm);
+      });
+      displayJobListings(filteredJobs);
+    });
+  </script>
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
+  </section>
+  <script>
+    function searchJobs() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const jobContainers = document.querySelectorAll('.job');
+      jobContainers.forEach(container => {
+        const title = container.getElementsByTagName('h3')[0].innerText.toLowerCase();
+        if (title.indexOf(input) > -1) {
+          container.style.display = '';
+        } else {
+          container.style.display = 'none';
+        }
+      });
+    }
+    document.querySelector('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      alert('Form submitted successfully!');
+    });
+  </script>
+</body>
+</html>
