@@ -1,0 +1,72 @@
+# models.py
+
+from django.db import models
+
+class ScrapingJob(models.Model):
+    job_id = models.UUIDField(primary_key=True)
+    status = models.CharField(max_length=20, default='pending')
+
+class ScrapedData(models.Model):
+    job = models.ForeignKey(ScrapingJob, on_delete=models.CASCADE, related_name='tasks')
+    coin = models.CharField(max_length=50)
+    scraped_data = models.JSONField()
+# coinmarketcap.py
+
+import requests
+from bs4 import BeautifulSoup
+
+class CoinMarketCap:
+    @staticmethod
+    def scrape_coin_data(coin):
+        url = f'https://coinmarketcap.com/currencies/{coin}/'
+        response = requests.get(url)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.content, 'html.parser')
+            # Scraping logic here
+            # Extract data and return as JSON
+        else:
+            return None
+# views.py
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+import uuid
+from .models import ScrapingJob, ScrapedData
+from .coinmarketcap import CoinMarketCap
+
+class StartScraping(APIView):
+    def post(self, request):
+        coins = request.data.get('coins', [])
+        if not all(isinstance(coin, str) for coin in coins):
+            return Response({'error': 'Invalid input. Please provide a list of coin acronyms as strings.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        job_id = uuid.uuid4()
+        job = ScrapingJob.objects.create(job_id=job_id)
+
+        for coin in coins:
+            # Perform scraping asynchronously using Celery
+            # Example:
+            # scrape_data.delay(job_id, coin)
+            pass
+
+        return Response({'job_id': job_id}, status=status.HTTP_201_CREATED)
+
+class ScrapingStatus(APIView):
+    def get(self, request, job_id):
+        try:
+            job = ScrapingJob.objects.get(job_id=job_id)
+            tasks = ScrapedData.objects.filter(job=job)
+            data = [{'coin': task.coin, 'output': task.scraped_data} for task in tasks]
+            return Response({'job_id': job_id, 'tasks': data})
+        except ScrapingJob.DoesNotExist:
+            return Response({'error': 'Job not found'}, status=status.HTTP_404_NOT_FOUND)
+# urls.py
+
+from django.urls import path
+from .views import StartScraping, ScrapingStatus
+
+urlpatterns = [
+    path('api/taskmanager/start_scraping/', StartScraping.as_view()),
+    path('api/taskmanager/scraping_status/<uuid:job_id>/', ScrapingStatus.as_view()),
+]
