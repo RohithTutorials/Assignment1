@@ -1,0 +1,38 @@
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+class LanguageModel(nn.Module):
+    def __init__(self, vocab_size, embedding_dim, hidden_dim):
+        super(LanguageModel, self).__init__()
+        self.embeddings = nn.Embedding(vocab_size, embedding_dim)
+        self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers=1, batch_first=True)
+        self.fc = nn.Linear(hidden_dim, vocab_size)
+
+    def forward(self, x):
+        h0 = torch.zeros(1, x.size(0), self.hidden_dim).to(x.device)
+        c0 = torch.zeros(1, x.size(0), self.hidden_dim).to(x.device)
+
+        out = self.embeddings(x)
+        out, _ = self.lstm(out, (h0, c0))
+        out = self.fc(out[:, -1, :])
+        return out
+
+# Set the parameters
+vocab_size = 10000
+embedding_dim = 128
+hidden_dim = 128
+
+# Initialize the model, loss function, and optimizer
+model = LanguageModel(vocab_size, embedding_dim, hidden_dim)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+# Train the model
+for epoch in range(10):
+    for x, y in train_loader:
+        output = model(x)
+        loss = criterion(output, y)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
