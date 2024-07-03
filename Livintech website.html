@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIVEINTECH</title>
+<style>
+    /* General Styles */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .image-container {
+        position: relative;
+        height: 400px; /* Adjust height as needed */
+        overflow: hidden;
+        margin-bottom: 20px; /* Add spacing between image containers */
+    }
+
+    .image-container img {
+        position: absolute;
+        left: 50%; /* Center horizontally */
+        top: -200px; /* Start above the container */
+        transform: translateX(-50%);
+        transition: top 0.5s ease-out;
+    }
+
+    /* Navigation Styles */
+    nav {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        background-color: #555;
+    }
+
+    /* Typewriter Styles */
+    .typewriter {
+        overflow: hidden; /* Ensures the text is not visible outside the typewriter container */
+        white-space: nowrap; /* Keeps the text on a single line */
+        margin: 20px auto; /* Centers the typewriter container */
+        text-align: center;
+    }
+
+    .typewriter h1 {
+        display: inline-block;
+        overflow: hidden; /* Ensures the text is not visible outside the h1 element */
+        border-right: .15em solid orange; /* Typing cursor */
+        animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
+    }
+
+    @keyframes typing {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
+    }
+
+    @keyframes blink-caret {
+        from, to {
+            border-color: transparent;
+        }
+        50% {
+            border-color: orange;
+        }
+    }
+
+    /* Sphere Animation Styles */
+    .sphere-container {
+        margin-top: 50px; /* Space between typewriter and sphere */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective: 800px;
+    }
+
+    .sphere {
+        width: 200px;
+        height: 200px;
+        background-color: #3498db;
+        border-radius: 50%;
+        position: relative;
+        animation: rotateSphere 10s linear infinite;
+    }
+
+    .sphere::before {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: #e74c3c;
+        border-radius: 50%;
+        top: 75px;
+        left: 75px;
+        animation: pulse 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes rotateSphere {
+        from {
+            transform: rotateX(0) rotateY(0);
+        }
+        to {
+            transform: rotateX(360deg) rotateY(360deg);
+        }
+    }
+
+    @keyframes pulse {
+        to {
+            transform: scale(1.2);
+            opacity: 0;
+        }
+    }
+
+    /* Contact and Company Information Styles */
+    .contact-info {
+        margin-top: 50px; /* Space between sphere and contact info */
+        text-align: left;
+    }
+
+    .company-info {
+        margin-top: 30px; /* Space between contact info and company info */
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Typewriter Section -->
+<div class="typewriter" id="home">
+    <h1 id="typewriter-text">LIVEINTECH</h1>
+</div>
+
+<!-- Main Content Section -->
+<div class="container" id="about">
+    <h1>Welcome to Our Website</h1>
+    <p>Scroll down to see the parallax effect.</p>
+
+    <!-- Parallax Images -->
+    <div class="image-container">
+        <img id="image1" src="C:\Users\Lenovo\Pictures\Screenshots\Screenshot 2024-07-03 214129.png" alt="Image 1">
+    </div>
+
+    <div class="image-container">
+        <img id="image2" src="C:\Users\Lenovo\Pictures\Screenshots\Screenshot 2024-07-03 214930.png" alt="Image 2">
+    </div>
+</div>
+
+<!-- Sphere Animation Section -->
+<div class="container sphere-container">
+    <div class="sphere"></div>
+</div>
+
+<!-- JavaScript for Sphere Animation -->
+<script>
+    // JavaScript for Sphere Animation
+    const sphere = document.querySelector('.sphere');
+
+    sphere.addEventListener('mouseover', function() {
+        sphere.style.animationPlayState = 'paused';
+    });
+
+    sphere.addEventListener('mouseout', function() {
+        sphere.style.animationPlayState = 'running';
+    });
+</script>
+
+<!-- Contact Information Section -->
+<div class="container" id="contact">
+    <h2>Contact Information</h2>
+    <div class="contact-info">
+        <p><strong>Email:</strong> contact@liveintech.co</p>
+        <p><strong>Phone:</strong> +91 80 617 70969</p>
+        <p><strong>Address:</strong> India Office
+            No. 17, Mayo Center,
+            
+            2nd Floor, Commissariat Road,
+            
+            Bangalore 560025.</p>
+    </div>
+</div>
+
+<!-- Company Information Section -->
+<div class="container">
+    <h2>Company Information</h2>
+    <div class="company-info">
+        <p>BUILD - GROW - SCALE
+            We collaborate with exceptional 'Entrepreneurs' and 'Intrapreneurs' to bring meaningful ideas to reality. We encourage collaboration through validation, talent, resources, and investment. We are the best co-founders and believe in co-creation, which enhances the likelihood of success significantly. Great teams made of world-class talent and ideas clash at Studio. We build capability-capitalTM inherently for high-impact differentiation -The Guild Factor.
+            
+            We are a multidisciplinary team of entrepreneurs, developers, designers, and investors who have built companies from scratch. We believe in an outcome-driven process to test assumptions, eliminate confirmation biases, and operate with passion. We enjoy collaborating with dreamers who have a strong desire to tackle real-world problems and advance humanity.</p>
+    </div>
+</div>
+
+<!-- JavaScript for Typewriter Effect -->
+<script>
+    const texts = [
+        "OPERATIONAL PARTNER",
+        "OPERATIONAL COFOUNDER",
+        "OPERATIONAL PARTNER"
+    ];
+    let index = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeWriter() {
+        const currentText = texts[index];
+        if (isDeleting) {
+            document.getElementById("typewriter-text").textContent = currentText.substring(0, charIndex--);
+        } else {
+            document.getElementById("typewriter-text").textContent = currentText.substring(0, charIndex++);
+        }
+
+        if (!isDeleting && charIndex === currentText.length + 1) {
+            isDeleting = true;
+            setTimeout(typeWriter, 500); // Wait before deleting
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            index = (index + 1) % texts.length; // Move to the next text
+            setTimeout(typeWriter, 500); // Wait before typing the next text
+        } else {
+            setTimeout(typeWriter, 100); // Typing speed
+        }
+    }
+
+    // Start typing animation
+    typeWriter();
+</script>
+
+<!-- JavaScript for Parallax Scrolling Effect -->
+<script>
+    window.addEventListener('scroll', function() {
+        let offset = window.pageYOffset;
+        document.getElementById('image1').style.top = -200 + offset * 0.5 + 'px';
+        document.getElementById('image2').style.top = -200 + offset * 0.3 + 'px';
+    });
+</script>
+
+</body>
+</html>
