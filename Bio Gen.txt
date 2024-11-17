@@ -1,0 +1,54 @@
+import openai
+import os
+
+# Set your OpenAI API key here directly or via environment variable
+# If using an environment variable, make sure it's set correctly, otherwise hardcode it.
+openai.api_key = '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'  # Replace with your actual API key
+
+
+# Function to generate bio using OpenAI GPT
+def generate_bio(career, personality, interests, relationship_goals):
+    prompt = f"Generate a personalized bio for a {career} who is {personality}, enjoys {interests}, and is looking for a {relationship_goals} relationship."
+
+    print(f"Generated prompt: {prompt}")  # Debugging output
+
+    try:
+        response = openai.Completion.create(
+            model="gpt-3.5-turbo",  # You can change the model if you want (e.g., "gpt-4")
+            prompt=prompt,
+            max_tokens=150
+        )
+        bio = response.choices[0].text.strip()
+        return bio
+    except openai.error.OpenAIError as e:
+        print(f"Error generating bio: {e}")
+        return None
+
+
+def get_user_input():
+    # Get the user's inputs for career, personality, interests, and relationship goals
+    career = input("Enter your career (e.g., Software Engineer, Artist, Chef): ")
+    personality = input("Enter your personality (e.g., Adventurous, Creative, Outgoing): ")
+    interests = input("Enter your interests (e.g., Cooking, Traveling, Fitness): ")
+    relationship_goals = input("Enter your relationship goals (e.g., Casual, Long-term, Adventurous): ")
+
+    return career, personality, interests, relationship_goals
+
+
+def main():
+    # Get user input
+    career, personality, interests, relationship_goals = get_user_input()
+
+    # Generate the bio using OpenAI API
+    bio = generate_bio(career, personality, interests, relationship_goals)
+
+    # Display the generated bio
+    if bio:
+        print("\nYour Generated Bio:")
+        print(bio)
+    else:
+        print("Failed to generate bio.")
+
+
+if __name__ == '__main__':
+    main()
