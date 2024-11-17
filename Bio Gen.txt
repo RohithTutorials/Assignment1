@@ -2,7 +2,7 @@ import openai
 import os
 
 # Set your OpenAI API key here directly or via environment variable
-openai.api_key = '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'  # Replace with your actual API key
+openai.api_key = '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'  
 
 
 # Function to generate bio using OpenAI GPT
