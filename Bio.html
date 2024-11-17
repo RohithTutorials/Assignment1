@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Bio</title>
+</head>
+<body>
+    <h1>Generate Your Personalized Bio</h1>
+
+    <form method="POST">
+        <label for="career">Career:</label><br>
+        <input type="text" id="career" name="career" required><br><br>
+
+        <label for="personality">Personality:</label><br>
+        <input type="text" id="personality" name="personality" required><br><br>
+
+        <label for="interests">Interests:</label><br>
+        <input type="text" id="interests" name="interests" required><br><br>
+
+        <label for="relationship_goals">Relationship Goals:</label><br>
+        <input type="text" id="relationship_goals" name="relationship_goals" required><br><br>
+
+        <button type="submit">Generate Bio</button>
+    </form>
+
+    {% if bio %}
+        <h2>Your Generated Bio:</h2>
+        <p>{{ bio }}</p>
+    {% endif %}
+</body>
+</html>
